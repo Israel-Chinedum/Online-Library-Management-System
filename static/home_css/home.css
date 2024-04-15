@@ -80,7 +80,7 @@
     margin-top: 8vh;
 }
 
-.sec1-buttons input{
+.sec1-buttons button{
     padding: 10px;
     font-size: 1.5rem;
     border-radius: 5px;
@@ -90,8 +90,31 @@
     color: white;
 }
 
-.sec1-buttons :first-child:before:after{
+.sec1-buttons :first-child{
     background-color: rgba(128, 128, 128, 0.753);
+    position: relative;
+    overflow: hidden;
+}
+
+.sec1-buttons :first-child:hover{
+    background-color: transparent;
+}
+
+.sec1-buttons :first-child::after{
+    content: 'Register';
+    display: block;
+    background-color: rgba(255, 166, 0, 0.623);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px 0px 10px 0px;
+    width: inherit;
+    transition: 0.5s;
+}
+
+.sec1-buttons :first-child:hover::after{
+    top: 0;
 }
 
 /* .sec1-buttons :first-child:after{
@@ -101,4 +124,27 @@
 
 .sec1-buttons :nth-child(2){
     background-color: rgba(255, 166, 0, 0.623);
+    position: relative;
+    overflow: hidden;
+}
+
+.sec1-buttons :nth-child(2):hover{
+    background-color: transparent;
+}
+
+.sec1-buttons :nth-child(2)::after{
+    content: 'Log in';
+    display: block;
+    background-color: rgba(128, 128, 128, 0.753);;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    padding: 10px 0px 10px 0px;
+    width: inherit;
+    transition: 0.5s;
+}
+
+.sec1-buttons :nth-child(2):hover::after{
+    top: 0;
 }
