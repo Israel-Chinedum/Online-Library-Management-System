@@ -1,5 +1,5 @@
 class GetRequest{
-    get(app, userModel){
+    get(app, userModel, db){
 
         app.get('', (req, res)=>{
             res.render('home');
@@ -13,20 +13,19 @@ class GetRequest{
             res.render('createPassword');
         });
 
+        app.get('/profile', (req, res) =>{
+            res.render('profile');
+        })
+
         app.get('/students', (req, res)=>{
 
-            const info = new userModel({
-                    name: "Favour Israel",
-                    age: 20,
-                    gpa:4
-            });
-
-            info.save().then(() =>{
-                userModel.find({}).then( students =>{
-                    res.json(students[0]);
-                });
-            });
-
+            new userModel({
+                name: 'Favour',
+                age: 20,
+                email: 'chinedumfavourite@gmail.com'
+            }).save().then(() =>{
+                res.send('Request has been sent!');
+            })
             
         });
 

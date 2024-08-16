@@ -1,17 +1,23 @@
-export const upload = (app, uploadFile, fs) =>{
+export const upload = (app, uploadFile, fs, fileModel) =>{
 
     app.post('/uploadImage', uploadFile.single('ProfileImg'), (req, res)=>{
         console.log('favour')
         console.log(req.file);
+        console.log(req.file.buffer)
 
-        fs.readFile(`./uploads/${req.file['filename']}`, (err, data) =>{
-            if(err) throw err;
+        //PUSHING TO DATABASE
+        const fileBuffer = req.file.buffer;
+        const mimetype = req.file.mimetype;
 
-            console.log(data);
-
-            res.send(data);
-
-        });
+         const test = new fileModel({
+            file: fileBuffer,
+            fileType: mimetype,
+            fileName: req.file.originalname
+         })
+         
+         test.save().then(() => {
+            res.send(req.file.buffer);
+         });
 
     });
 

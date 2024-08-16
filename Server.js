@@ -6,64 +6,88 @@ import { register } from './post_routes/registration.js';
 import multer from 'multer';
 import fs from 'fs';
 import mongoose from 'mongoose';
+import {random} from './random.js';
+import { userInfo } from './post_routes/userInfo.js';
+import { userPic } from './post_routes/userPic.js';
+import QRCODE from 'qrcode';
+import { qrcode } from './post_routes/qrcode.js';
+
+
+
+
+// let num = false;
+// const ref = ['string'];y
+// const one = 'string';
+// const two = ref[0];
+
+// console.log(one == two);
+
+// //recall
+// const recall = () => {
+//     if(!num){
+//         console.log('recalling!', `${number++}`);
+//         recall()
+//     } else if(num){
+//         console.log('recall ended!');
+//     }
+// }
+
+// recall();
 
 
 //DATABASE CONNECTION
-mongoose.connect('mongodb://localhost:27017/school');
+mongoose.connect('mongodb://localhost:27017/library');
 
 //DEFINE FIELDS
 const userSchema = mongoose.Schema({
-    name: String,
-    age: Number,
-    gpa: Number
+    Data: Object,
+    File: Object,
+    IdNumber: String
 });
+
 
 const userModel = mongoose.model('students', userSchema);
 
+const fileSchema = mongoose.Schema({
+    file: Buffer,
+    fileType: String,
+    fileName: String
+}, {collection: 'file'})
 
+const fileModel = mongoose.model('file', fileSchema);
 
 //ASSIGNING EXPRESS TO THE APP VARIABLE
 const app = express();
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, './uploads');
-    }, 
-    filename: function(req, file, cb){
-        cb(null, file.originalname);
-    }
-})
-
+const storage = multer.memoryStorage();
 const uploadFile = multer({storage});
 
 const data = multer.diskStorage({
-    destination: function(req, file, cb){
+
+    destination: (req, file, cb) =>{
         cb(null, './uploads');
-    }, 
+    },
+
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
 
     fields: [
-        {name: 'ProfileImg', maxCount: 1},
         {name: 'FirstName'},
         {name: 'LastName'},
         {name: 'MatricNumber'},
         {name: 'MobileNumber'},
         {name: 'Email'},
         {name: 'DOB'}
-    ],
+    ]
 
-    filename: function(req, file, cb){
-        cb(null, file.originalname);
-    }
-
-})
-
+});
 const uploadData = multer({data});
+
 
 //SETTING THE VIEW ENGINE
 app.set('view engine', 'ejs');
-
 app.use(express.json());
-
 app.use(express.urlencoded({extended: false}));
 
 //SETTING EXPRESS TO USE STATIC FILES
@@ -73,8 +97,12 @@ app.use(express.static('static'));
 gr.get(app, userModel);
 
 //POST REQUEST HANDLERS
-register(app, fs, uploadData);
-upload(app, uploadFile, fs);
+register(app, fs, uploadData, userModel);
+upload(app, uploadFile, fs, fileModel);
+userInfo(app, fs, userModel);
+userPic(app, fs, userModel);
+qrcode(app, fs, QRCODE);
+
 
 
 //SETTING PORT TO LISTEN FOR INCOMING REQUESTS

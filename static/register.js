@@ -100,7 +100,8 @@ profileImg.addEventListener('change', async() =>{
 
 finishBtn.addEventListener('click', async(e) =>{
     e.preventDefault();
-    console.log(form)
+    console.log(form);
+    document.querySelector('#load-page').style.display = 'flex';
     form.submit();
 });
 
