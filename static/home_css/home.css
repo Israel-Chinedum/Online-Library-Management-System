@@ -12,19 +12,19 @@
     background-image: url(../images/henry-be-lc7xcWebECc-unsplash\ -\ Copy.jpg);
     background-position: center;
     background-size: cover;
-    border-bottom: 4px solid orange;
+    border-bottom: 4px solid blue;
 }
 
 #navigation-bar{
     display: flex;
     justify-content: space-between;
     padding: 1%;
-    background-color: orange;
+    background-color: blue;
 }
 
 #navigation-bar h1{
     font-size: 2rem;
-    color: white;
+    color: grey;
     background-color: transparent;
 }
 
@@ -42,7 +42,7 @@
 
 #navigations li a{
     font-size: 1.5rem;
-    color: white;
+    color: grey;
     background-color: transparent;
     text-decoration: none;
     padding: 10px;
@@ -50,7 +50,8 @@
 }
 
 #navigations li a:hover{
-    background-color: rgba(128, 128, 128, 0.74);
+    background-color: rgba(255, 255, 255, 0.521);
+    color: black;
 }
 
 #sec1 div{
@@ -75,7 +76,6 @@
 .sec1-buttons{
     text-align: center;
     display: flex;
-    background: red;
     justify-content: center;
     margin-top: 8vh;
 }
@@ -103,7 +103,7 @@
 .sec1-buttons :first-child::after{
     content: 'Register';
     display: block;
-    background-color: rgba(255, 166, 0, 0.623);
+    background-color: rgba(0, 0, 255, 0.541);
     position: absolute;
     top: 100%;
     left: 0;
@@ -123,7 +123,7 @@
 } */
 
 .sec1-buttons :nth-child(2){
-    background-color: rgba(255, 166, 0, 0.623);
+    background-color: rgba(0, 0, 255, 0.541);;
     position: relative;
     overflow: hidden;
 }

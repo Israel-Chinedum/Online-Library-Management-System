@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(./image_database/gabriel-sollmann-Y7d265_7i08-unsplash\ -\ Copy.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 20px 4px black;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.form input{
+    border-bottom: 1px solid white;
+    padding: 10px;
+    width: 40vh;
+    margin-bottom: 10px;
+    outline: none; 
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.534);
+    color: white;
+    box-shadow: 1px 1px 7px 1px black;
+}
+
+.form input::placeholder{
+    color: white;
+}
+
+.form label{
+    font-size: 1.2rem;
+    background-color: rgba(128, 128, 128, 0.603);
+    font-weight: bold;
+    color: white;
+}
+
+.form-btn{
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.555);
+    cursor: pointer;
+    width: 50%;
+    margin: auto;
+    color: black;
+    margin-top: 20px;
+    color: white;
+    font-size: 15px;
+}
+
+.form-btn:hover{
+    background-color: transparent;
+    box-shadow: 1px 2px 20px 2px black;
+    color: black;
+}
+
+#label{
+    font-size: 1.2rem;
+    color: white;
+    background-color: rgba(128, 128, 128, 0.623);
+}
+
+#display-image{
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 20px 4px black;
+    margin-top: -200px;
+    margin-bottom: 100px;
+}
+
+
+#message{
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    display: none
+}
+
+#upload-container{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+}
+
+#profile-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}

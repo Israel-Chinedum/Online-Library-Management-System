@@ -1,0 +1,56 @@
+<!-- CSS -->
+
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+#load-page{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.712);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#load-circle{
+    width: 4vw;
+    height: 4vw;
+    border-radius: 50%;
+    border-left: 10px groove transparent;
+    border-right: 10px groove transparent;
+    border-top: 10px groove white;
+    border-bottom: 10px groove white;
+    animation: load 1s infinite;
+}
+
+@keyframes load{
+    from{
+        transform: rotate(0deg);
+        border-right-color: transparent;
+        border-left-color: transparent;
+        border-top-color: white;
+        border-bottom-color: white;
+    }
+    to{
+        transform: rotate(360deg);
+        border-right-color: white;
+        border-left-color: white;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+    }
+}
+
+</style>
+
+
+
+<!-- HTML -->
+
+<div id="load-page">
+    <div id="load-circle"></div>
+</div>

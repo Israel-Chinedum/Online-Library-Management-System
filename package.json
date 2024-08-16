@@ -1,5 +1,5 @@
 {
-  "name": "online-library-management-system",
+  "name": "Liibrary Card Allocation System",
   "version": "1.0.0",
   "description": "",
   "main": "Server.js",
@@ -11,9 +11,13 @@
   "author": "ISRAEL FAVOUR",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
-    "nodemon": "^3.1.0"
-  }, 
+    "mongoose": "^8.5.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.0",
+    "qrcode": "^1.5.3"
+  },
   "type": "module"
 }
