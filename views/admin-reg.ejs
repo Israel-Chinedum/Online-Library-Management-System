@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L.M.S</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+    <%- include("./load")%>
+
+    
+    <p id="message">This is supposed to be a message</p>
+
+    <form enctype="multipart/form-data" action="/register" method="post" id="form">
+
+        <div id="upload-container">
+
+            <div id="display-image">
+                <img alt="" id="profile-img">
+            </div>
+    
+            <div class="form" id="upload-form">
+                <label for="image" id="label">Upload image</label>
+                <input accept=".png, .jpg, .jpeg" type="file" name="ProfileImg" >
+                <button class="form-btn" id="finish-btn">Finish</button>
+            </div>
+    
+        </div>
+    
+        
+        <div id="data-div" class="form">
+
+            <label for="FirstName">Enter First Name</label>
+            <input type="text" name="FirstName" class="input">
+            
+            <label for="LastName">Enter Last name</label>
+            <input type="text" name="LastName" class="input">
+    
+            <label for="Email">Enter email address</label>
+            <input type="email" name="Email" class="input">
+    
+            <label for="MobileNumber">Enter Mobile Number</label>
+            <input type="number" name="MobileNumber" class="input">
+    
+            <label for="DOB">Enter date of birth</label>
+            <input type="date" name="DOB" class="input">
+    
+            <button id="reg-btn" class="form-btn" >Next</button>
+
+        </div>
+
+        
+
+    </form>
+    <script src="register.js" type="module"></script>
+</body>
+</html>

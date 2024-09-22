@@ -1,0 +1,299 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: sans-serif;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+    grid-template-rows: 7%;
+}
+
+#header{
+    grid-column: 1/ span 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#header h2{
+    color: darkblue;
+}
+
+#header button{
+    background-color: darkblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#side-panel ul{
+    list-style: none;
+}
+
+#side-panel ul li{
+    padding: 20px 10px 20px 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#side-panel ul li:hover{
+    background-color: darkblue;
+    color: white;
+}
+
+#main{
+    grid-column: 2 / span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container div{
+    border: 1px solid grey;
+}
+
+
+
+
+
+
+
+
+
+
+/* -----PROFILE SECTION----- */
+#profile{
+    display: flex;
+    align-items: center;
+    background-color: darkblue;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#profile img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+#profile #profile-name{
+    margin: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+/* -----DASHBOARD SECTION----- */
+#dashboard{
+    width: 98%;
+    height: 98%;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#total-users{
+    display: grid;
+}
+
+
+.number{
+    font-size: 300%;
+    justify-self: center;
+}
+
+.text{
+    font-size: 1.5rem;
+}
+
+#total-members{
+    display: grid;
+}
+
+#total-borrowed-books{
+    display: grid;
+}
+
+#dashboard #total-user-list{
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#dashboard div i{
+    justify-self: center;
+    font-size: 1000%;
+    color: darkblue
+}
+
+#dashboard div{
+    box-shadow: 2px 2px 7px 5px grey;
+    border-radius: 10px;
+    padding: 50px;
+    font-size: 1.1rem;
+    color: black;
+}
+
+#dashboard .user-list{
+    box-shadow: inset -4px 4px 4px 0px grey;
+    border-radius: 0;
+    height: 70%;
+    /* max-height: 300px; */
+    padding: 10px;
+    overflow-y: scroll;
+    border: none;
+}
+
+#dashboard .user{
+    padding: 0;
+    box-shadow: none;
+    height: 70px;
+    margin: 10px 0px 10px 0px;
+}
+
+#form{
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form input{
+    width: 70%;
+    border: 1px solid grey;
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 7px;
+    margin: 5px;
+    outline-color: darkblue;
+}
+
+#form button{
+    width: 100px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 5px;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+}
+
+#new-signin {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 7fr;
+}
+
+#dashboard #new-signin i{
+   font-size: 2rem;
+   justify-self: end;
+}
+
+#new-signin #new-user{
+    grid-column: 1 / span 2;
+    box-shadow: none;
+    border-radius: 0;
+    border: 1px solid darkblue;
+}
+
+
+
+
+
+
+
+
+
+/* -----USER MANAGEMENT SECTION----- */
+#user-management{
+    display: none;
+    flex-direction: column;
+    width: 98%;
+    max-height: 98%;
+    overflow-y: scroll;
+    padding: 10px;
+    align-self: start;
+}
+
+.admin-user{
+    margin-bottom: 10px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.admin-user div{
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.admin-user img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid grey;
+
+}
+
+.admin-user .admin-user-name{
+    margin-left: 20px;
+}
+
+.admin-user button{
+    background-color: darkblue;
+    color: white;
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+/* -----CARD ALLOCATION----- */
+#card-allocation{
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+#reg-page{
+    width: 100%;
+    height: 100%;
+}

@@ -50,8 +50,7 @@ window.addEventListener('load', async () => {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({id: `${id.innerHTML}`})
     }).then(res => res.blob()).then(data => {
-
-        // const buffer = new Uint8Array(atob(data).split('').map(char => char.charCodeAt(0)));
+        
         qrImg.src = URL.createObjectURL(new Blob([data], {type: 'image/png'}));
     })
 
@@ -61,5 +60,5 @@ qrCodeBtn.addEventListener('click', () => {
     const anchor = document.createElement('a');
     anchor.href = qrImg.src;
     anchor.setAttribute('download', '')
-    anchor.click()
+    anchor.click();
 });

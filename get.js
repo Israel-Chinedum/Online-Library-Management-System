@@ -15,7 +15,19 @@ class GetRequest{
 
         app.get('/profile', (req, res) =>{
             res.render('profile');
-        })
+        });
+
+        app.get('/admin', (req, res) => {
+            res.render('admin');
+        });
+
+        app.get('/admin-reg', (req, res) => {
+            res.render('admin-reg');
+        });
+
+        app.get('/admin-login', (req, res) => {
+            res.render('admin-login');
+        });
 
         app.get('/students', (req, res)=>{
 
