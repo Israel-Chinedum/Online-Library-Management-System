@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L.M.S</title>
     <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="Font-Awesome-6.5.2/Font-Awesome-6.5.2/css/all.css">
 </head>
 <body>
 
@@ -13,7 +14,7 @@
     
     <p id="message">This is supposed to be a message</p>
 
-    <form enctype="multipart/form-data" action="/register" method="post" id="form">
+    <form enctype="multipart/form-data" action="/admin-reg" method="post" id="form">
 
         <div id="upload-container">
 
@@ -33,19 +34,30 @@
         <div id="data-div" class="form">
 
             <label for="FirstName">Enter First Name</label>
-            <input type="text" name="FirstName" class="input">
+            <input type="text" name="FirstName" class="input" >
             
             <label for="LastName">Enter Last name</label>
-            <input type="text" name="LastName" class="input">
+            <input type="text" name="LastName" class="input" >
     
             <label for="Email">Enter email address</label>
             <input type="email" name="Email" class="input">
     
             <label for="MobileNumber">Enter Mobile Number</label>
-            <input type="number" name="MobileNumber" class="input">
+            <input type="number" name="MobileNumber" class="input" >
     
             <label for="DOB">Enter date of birth</label>
-            <input type="date" name="DOB" class="input">
+            <input type="date" name="DOB" class="input" >
+
+            <label for="UserName">Enter User Name</label>
+            <input type="text" name="UserName" class="input" >
+
+            <label for="Password">Enter Password</label>
+            <div id="password-holder">
+                <input type="password" name="Password" id="password" class="input">
+                <i class="fa-solid fa-eye-slash"></i>
+            </div>
+            
+           
     
             <button id="reg-btn" class="form-btn" >Next</button>
 
@@ -54,6 +66,6 @@
         
 
     </form>
-    <script src="register.js" type="module"></script>
+    <script src="admin-reg.js" type="module"></script>
 </body>
 </html>

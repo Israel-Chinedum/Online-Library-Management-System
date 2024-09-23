@@ -11,16 +11,12 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url(./image_database/gabriel-sollmann-Y7d265_7i08-unsplash\ -\ Copy.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
 .form{
     display: flex;
     flex-direction: column;
-    box-shadow: 1px 1px 20px 4px black;
+    box-shadow: 1px 1px 20px 4px grey;
     padding: 30px;
     border-radius: 10px;
 }
@@ -32,9 +28,7 @@ body{
     margin-bottom: 10px;
     outline: none; 
     font-size: 18px;
-    background-color: rgba(0, 0, 0, 0.534);
-    color: white;
-    box-shadow: 1px 1px 7px 1px black;
+    box-shadow: 1px 1px 7px 1px grey;
 }
 
 .form input::placeholder{
@@ -43,40 +37,35 @@ body{
 
 .form label{
     font-size: 1.2rem;
-    background-color: rgba(128, 128, 128, 0.603);
-    font-weight: bold;
-    color: white;
+    color: black;
 }
 
 .form-btn{
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.555);
+    background-color: darkblue;
     cursor: pointer;
     width: 50%;
     margin: auto;
-    color: black;
     margin-top: 20px;
     color: white;
     font-size: 15px;
 }
 
 .form-btn:hover{
-    background-color: transparent;
-    box-shadow: 1px 2px 20px 2px black;
-    color: black;
+    background-color: darkblue;
+    box-shadow: 1px 2px 20px 2px grey;
+    font-size: 16px;
 }
 
 #label{
     font-size: 1.2rem;
-    color: white;
-    background-color: rgba(128, 128, 128, 0.623);
 }
 
 #display-image{
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    box-shadow: 1px 1px 20px 4px black;
+    box-shadow: 1px 1px 20px 4px grey;
     margin-top: -200px;
     margin-bottom: 100px;
 }
@@ -101,4 +90,25 @@ body{
     width: 100%;
     height: 100%;
     border-radius: 50%;
+}
+
+#password-holder{
+    display: flex;
+    align-items: center;
+    width: 40vh;
+    padding-inline: 10px;
+    justify-content: space-between;
+    box-shadow: 1px 1px 7px 1px grey;
+    margin-bottom: 10px;
+}
+
+.form #password-holder #password{
+    box-shadow: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#password[type=password]::-ms-reveal{
+    display: none;
 }

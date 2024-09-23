@@ -8,6 +8,7 @@ const profileDisplay = document.querySelector('#profile-img');
 const profileImg = document.getElementsByName('ProfileImg')[0];
 const finishBtn = document.querySelector('#finish-btn');
 const form = document.querySelector('#form');
+const showPass = document.querySelector('.fa-eye-slash');
 
 
 class Validate{
@@ -98,11 +99,34 @@ profileImg.addEventListener('change', async() =>{
 
 });
 
-finishBtn.addEventListener('click', async(e) =>{
+form.addEventListener('submit', async(e) =>{
     e.preventDefault();
+
+    if(validate.filled(inputs) == false){
+        validate.errMess(message, 'block', 'Completely fill the form!');
+        return;
+    } 
+
+    if(validate.email(email) != true){
+        validate.errMess(message, 'block', 'Invalid email address!');
+        return
+    }
+
     console.log(form);
     document.querySelector('#load-page').style.display = 'flex';
     form.submit();
 });
 
+
+showPass.addEventListener('click', () =>{
+    if(showPass.classList.contains('fa-eye')){
+        showPass.classList.remove('fa-eye');
+        showPass.classList.add('fa-eye-slash');
+        document.querySelector('#password').setAttribute('type', 'password')
+    } else{
+        showPass.classList.remove('fa-eye-slash');
+        showPass.classList.add('fa-eye');
+        document.querySelector('#password').removeAttribute('type', 'password')
+    }
+});
 

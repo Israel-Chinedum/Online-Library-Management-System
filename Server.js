@@ -11,6 +11,8 @@ import { userInfo } from './post_routes/userInfo.js';
 import { userPic } from './post_routes/userPic.js';
 import QRCODE from 'qrcode';
 import { qrcode } from './post_routes/qrcode.js';
+import { adminReg } from './post_routes/admin-reg-route.js';
+import { adminLogin } from './post_routes/admin-login-route.js';
 
 
 
@@ -48,19 +50,39 @@ const userSchema = mongoose.Schema({
 
 const userModel = mongoose.model('students', userSchema);
 
-const fileSchema = mongoose.Schema({
-    file: Buffer,
-    fileType: String,
-    fileName: String
-}, {collection: 'file'})
+const adminSchema = mongoose.Schema({
+    Data: Object,
+    File: Object
+}, {collection: 'admins'})
 
-const fileModel = mongoose.model('file', fileSchema);
+const adminModel = mongoose.model('admins', adminSchema);
 
 //ASSIGNING EXPRESS TO THE APP VARIABLE
 const app = express();
 
 const storage = multer.memoryStorage();
 const uploadFile = multer({storage});
+
+const adminData = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads');
+    },
+
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+
+    fields: [
+        {name: "FirstName"},
+        {name: "LastName"},
+        {name: "Email"},
+        {name: "MobileNumber"},
+        {name: "UserName"},
+        {name: "DOB"}
+    ]
+});
+
+const adminInfo = multer({adminData});
 
 const data = multer.diskStorage({
 
@@ -94,14 +116,16 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static('static'));
 
 //GET REQUEST HANDLERS
-gr.get(app, userModel);
+gr.get(app, userModel, adminModel);
 
 //POST REQUEST HANDLERS
 register(app, fs, uploadData, userModel);
-upload(app, uploadFile, fs, fileModel);
+upload(app, uploadFile, fs);
 userInfo(app, fs, userModel);
 userPic(app, fs, userModel);
 qrcode(app, fs, QRCODE);
+adminReg(app, adminInfo, adminModel);
+adminLogin(app, adminModel);
 
 
 

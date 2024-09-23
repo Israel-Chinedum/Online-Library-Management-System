@@ -1,13 +1,19 @@
-const dataDiv = document.querySelector('#data-div');
+const showPass = document.querySelector('.fa-eye-slash');
+const form = document.querySelector('.form');
 const inputs = document.querySelectorAll('.input');
-const regBtn = document.querySelector('#reg-btn');
-const message = document.querySelector('#message');
 const email = document.getElementsByName('Email')[0];
-const uploadContainer = document.querySelector('#upload-container');
-const profileDisplay = document.querySelector('#profile-img');
-const profileImg = document.getElementsByName('ProfileImg')[0];
-const finishBtn = document.querySelector('#finish-btn');
-const form = document.querySelector('#form');
+
+showPass.addEventListener('click', () =>{
+    if(showPass.classList.contains('fa-eye')){
+        showPass.classList.remove('fa-eye');
+        showPass.classList.add('fa-eye-slash');
+        document.querySelector('#password').setAttribute('type', 'password')
+    } else{
+        showPass.classList.remove('fa-eye-slash');
+        showPass.classList.add('fa-eye');
+        document.querySelector('#password').removeAttribute('type', 'password')
+    }
+});
 
 
 class Validate{
@@ -50,14 +56,9 @@ class Validate{
 
 
 
-// EVENT LISTENER FOR THE WHEN THE SUBMIT BUTTON IS CLICKED
-    regBtn.addEventListener('click', (e) =>{
-
-    // EVENT HANDLER FOR WHEN THE SUBMIT BUTTON IS CLICKED
-
+form.addEventListener('submit', (e) =>{
     e.preventDefault();
 
-    // FORM VALIDATION CODE FOR VALIDATING THE REGISTRATION FORM
     if(validate.filled(inputs) == false){
         validate.errMess(message, 'block', 'Completely fill the form!');
         return;
@@ -68,41 +69,7 @@ class Validate{
         return
     }
 
-    dataDiv.style.display = 'none';
-    uploadContainer.style.display = 'flex';
-
-});
-
-
-// EVENT LISTENER FOR WHEN AN IMAGE IS SELECTED ON THE "uploadImage" PAGE
-profileImg.addEventListener('change', async() =>{
-
-    const file = profileImg.files[0];
-    const formData = new FormData();
-    formData.append('ProfileImg', file);
-
-        document.querySelector('#load-page').style.display = 'flex';
-
-   fetch('uploadImage', {
-    method: 'post',
-    body: formData
-   }).then(res => res.blob()).then(data => {
-    
-    console.log(data);
-
-    profileDisplay.src = URL.createObjectURL(data);
-
-    document.querySelector('#load-page').style.display = 'none';
-
-});
-
-});
-
-finishBtn.addEventListener('click', async(e) =>{
-    e.preventDefault();
     console.log(form);
     document.querySelector('#load-page').style.display = 'flex';
     form.submit();
 });
-
-

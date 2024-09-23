@@ -98,8 +98,19 @@ profileImg.addEventListener('change', async() =>{
 
 });
 
-finishBtn.addEventListener('click', async(e) =>{
+form.addEventListener('submit', (e) =>{
     e.preventDefault();
+
+    if(validate.filled(inputs) == false){
+        validate.errMess(message, 'block', 'Completely fill the form!');
+        return;
+    } 
+
+    if(validate.email(email) != true){
+        validate.errMess(message, 'block', 'Invalid email address!');
+        return
+    }
+
     console.log(form);
     document.querySelector('#load-page').style.display = 'flex';
     form.submit();
