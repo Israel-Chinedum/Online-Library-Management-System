@@ -112,3 +112,17 @@ body{
 #password[type=password]::-ms-reveal{
     display: none;
 }
+
+#img{
+    width: 200px;
+    height: 200px;
+    margin-top: -10px;
+    margin-bottom: 50px;
+    align-self: center;
+}
+
+#info-text{
+    margin-bottom: 20px;
+    color: darkblue;
+    align-self: center;
+}

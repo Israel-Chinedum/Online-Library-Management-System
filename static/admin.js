@@ -2,7 +2,7 @@ const dbBtn = document.querySelector('#dashboard-btn');
 const userBtn = document.querySelector('#user-management-btn');
 const caBtn = document.querySelector('#card-allocation-btn');
 const dashboard = document.querySelector('#dashboard');
-const userManagement = document.querySelector('#user-management');
+const adminUsers = document.querySelector('#admin-users');
 const cardAllocation = document.querySelector('#card-allocation');
 const section = document.querySelector('#section');
 const userList = document.querySelector('#user-list');
@@ -13,26 +13,27 @@ const totalUsers = document.querySelector('#total-users .number');
 const profileName = document.querySelector('#profile-name');
 const profileImg = document.querySelector('#profile img');
 let myArr = [];
+let adminList = [];
 
 
 const displaySections = (e) => {
     
     switch(e.target.innerHTML){
         case 'Dashboard':
-            userManagement.style.display = 'none';
+            adminUsers.style.display = 'none';
             cardAllocation.style.display = 'none';
             dashboard.style.display = 'grid';
             section.innerHTML = e.target.innerHTML;
             break;
-        case 'Admin User Management':
+        case 'Admin Users':
             dashboard.style.display = 'none';
             cardAllocation.style.display = 'none';
-            userManagement.style.display = 'block';
+            adminUsers.style.display = 'block';
             section.innerHTML = e.target.innerHTML;
             break;
         case 'Card Allocation':
             dashboard.style.display = 'none';
-            userManagement.style.display = 'none';
+            adminUsers.style.display = 'none';
             cardAllocation.style.display = 'grid';
             section.innerHTML = e.target.innerHTML;
     }
@@ -64,7 +65,8 @@ window.addEventListener('load', () => {
                     <img src="${url}" alt="">
                     <p id="user-name">${i.Data['FirstName']} ${i.Data.LastName}</p>
                 </div>
-                <button>View details</button>
+                <p id="identification" style="display:none">${i.IdNumber}</p>
+                <button id="user-list-vb">View details</button>
             </div>
           `
         }
@@ -74,8 +76,28 @@ window.addEventListener('load', () => {
     });
 
     fetch('/admin-users').then(res => res.json()).then(data => {
-        console.log(data);
-    })
+        
+        document.querySelector('#total-members .number').innerHTML = data.length;
+
+        adminList = [...data];
+
+        for(let i of data){
+
+            const buffer = new Uint8Array(atob(i.pic).split('').map(char => char.charCodeAt(0)));
+            const url = URL.createObjectURL(new Blob([buffer], {type: 'image/jpeg'}));
+
+            adminUsers.innerHTML += `
+                                    <div class="admin-user">
+                                    <div>
+                                        <img src="${url}" alt="">
+                                        <p class="admin-user-name">${i.userName}</p>
+                                    </div>
+                                    <button>View details</button>
+                                    
+                                    </div>
+                                    `
+        }
+    });
 
 });
 
@@ -148,6 +170,53 @@ window.addEventListener('load', () => {
         const url = URL.createObjectURL(new Blob([buffer], {type: 'image/jpeg'}));
         profileImg.src = url;
     });
+});
+
+window.addEventListener('click', (e) => {
+    if(e.target.id == 'user-list-vb'){
+        document.querySelector('#view-details-panel').style.display = 'flex';
+        const id = e.target.parentElement.children[1].innerHTML;
+
+        for(let i of myArr){
+            if(i.IdNumber == id){
+
+                const buff = new Uint8Array(atob(i.File.buffer).split('').map(char => char.charCodeAt(0)));
+                const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
+
+                document.querySelector('#panel').innerHTML = `
+                <img src="${url}" alt="">
+                <div>
+                    <label for="">First Name:</label>
+                    <label for="">${i.Data.FirstName}</label>
+                </div>
+                <div>
+                    <label for="">Last Name:</label>
+                    <label for="">${i.Data.LastName}</label>
+                </div>
+                <div>
+                    <label for="">Email:</label>
+                    <label for="">${i.Data.Email}</label>
+                </div>
+                <div>
+                    <label for="">Matric Number:</label>
+                    <label for="">${i.Data.MatricNumber}</label>
+                </div>
+                <div>
+                    <label for="">Mobile Number:</label>
+                    <label for="">${i.Data.MobileNumber}</label>
+                </div>
+                <div>
+                    <label for="">User ID:</label>
+                    <label for="">${i.IdNumber}</label>
+                </div>
+                <div>
+                    <label for="">Date of Birth:</label>
+                    <label for="">${i.Data.DOB}</label>
+                </div>                                              
+                                                     `
+            }
+        }
+    }
 });
 
 

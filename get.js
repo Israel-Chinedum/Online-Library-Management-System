@@ -14,7 +14,8 @@ class GetRequest{
         });
 
         app.get('/profile', (req, res) =>{
-            res.render('profile');
+            const id = req.query.id;
+            res.render('profile', {id});
         });
 
         app.get('/admin', async (req, res) => {
@@ -34,7 +35,7 @@ class GetRequest{
                         FirstName: i.Data.FirstName,
                         LastName: i.Data.LastName,
                         MobileNumber: i.Data.MobileNumber
-                })
+                });
                 }
                 
             }).catch( err => {
