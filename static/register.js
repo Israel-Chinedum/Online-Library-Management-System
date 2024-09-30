@@ -1,7 +1,7 @@
 const dataDiv = document.querySelector('#data-div');
 const inputs = document.querySelectorAll('.input');
 const regBtn = document.querySelector('#reg-btn');
-const message = document.querySelector('#message');
+// const message = document.querySelector('#message');
 const email = document.getElementsByName('Email')[0];
 const uploadContainer = document.querySelector('#upload-container');
 const profileDisplay = document.querySelector('#profile-img');

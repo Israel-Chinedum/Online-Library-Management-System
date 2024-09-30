@@ -2,6 +2,7 @@ const showPass = document.querySelector('.fa-eye-slash');
 const form = document.querySelector('.form');
 const inputs = document.querySelectorAll('.input');
 const email = document.getElementsByName('Email')[0];
+const message = document.querySelector('#message');
 
 showPass.addEventListener('click', () =>{
     if(showPass.classList.contains('fa-eye')){
@@ -14,6 +15,8 @@ showPass.addEventListener('click', () =>{
         document.querySelector('#password').removeAttribute('type', 'password')
     }
 });
+
+
 
 
 class Validate{
@@ -43,7 +46,7 @@ class Validate{
     errMess(element, display, mess){
 
         element.style.display = display;
-        element.innerHTML = mess;
+        element.textContent = mess;
 
         setTimeout(()=>{
             element.style.display = 'none';
@@ -72,4 +75,14 @@ form.addEventListener('submit', (e) =>{
     console.log(form);
     document.querySelector('#load-page').style.display = 'flex';
     form.submit();
+});
+
+
+window.addEventListener('load', () => {
+    if(message.textContent != ''){
+        message.style.display = 'block';
+        setTimeout(() => {
+            message.style.display = 'none';
+        }, 3000)
+    }
 });

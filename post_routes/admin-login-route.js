@@ -24,7 +24,7 @@ export const adminLogin = (app, adminModel) => {
         if(isValidUser){
             res.render('admin');
         } else{
-            res.json({error: "Invalid email address or password!"});
+            res.render('admin-login', {error: "Invalid email address or password!"});
         }
 
     });

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+    <h2 style="color:darkblue; margin-bottom: 50px;">Your password will be sent to your email address</h2>
+
+    <p id="message"><%=error%></p>
+    <form action="/forgot" method="post" id="data-div" class="form" >
+        <label for="">Enter Email Address</label>
+        <input type="email" class="input" name="Email">
+        <button class="form-btn">Submit</button>
+    </form>
+    <script src="forgot.js"></script>
+</body>
+</html>

@@ -22,6 +22,10 @@ class GetRequest{
             res.render('admin');
         });
 
+        app.get('/forgot', (req, res) => {
+            res.render('forgot', {error: ''});
+        });
+
         app.get('/admin-users', async (req, res) => {
 
             const adminUserDetails = [];
@@ -60,7 +64,7 @@ class GetRequest{
         });
 
         app.get('/admin-login', (req, res) => {
-            res.render('admin-login');
+            res.render('admin-login', {error: ''});
         });
 
         app.get('/students', (req, res)=>{

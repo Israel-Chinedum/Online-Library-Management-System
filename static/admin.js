@@ -184,38 +184,73 @@ window.addEventListener('click', (e) => {
                 const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
 
                 document.querySelector('#panel').innerHTML = `
-                <img src="${url}" alt="">
+                <input type="button" value="X" id="exit-btn" />
+                <img src="${url}" alt="" />
                 <div>
                     <label for="">First Name:</label>
-                    <label for="">${i.Data.FirstName}</label>
+                    <input name="FirstName" class="info" type="text" readonly required value="${i.Data.FirstName}" />
                 </div>
                 <div>
                     <label for="">Last Name:</label>
-                    <label for="">${i.Data.LastName}</label>
+                    <input name="LastName" class="info" type="text" readonly required value="${i.Data.LastName}" />
                 </div>
                 <div>
                     <label for="">Email:</label>
-                    <label for="">${i.Data.Email}</label>
+                    <input name="Email" class="info" type="email" readonly required value="${i.Data.Email}" />
                 </div>
                 <div>
                     <label for="">Matric Number:</label>
-                    <label for="">${i.Data.MatricNumber}</label>
+                    <input name="MatricNumber" class="info" type="number" readonly required value="${i.Data.MatricNumber}" />
                 </div>
                 <div>
                     <label for="">Mobile Number:</label>
-                    <label for="">${i.Data.MobileNumber}</label>
+                    <input name="MobileNumber" class="info" type="number" readonly required value="${i.Data.MobileNumber}" />
                 </div>
                 <div>
                     <label for="">User ID:</label>
-                    <label for="">${i.IdNumber}</label>
+                    <input type="text" readonly required value="${i.IdNumber}">
                 </div>
                 <div>
                     <label for="">Date of Birth:</label>
-                    <label for="">${i.Data.DOB}</label>
-                </div>                                              
+                    <input name="DOB" class="info" type="date" readonly required value="${i.Data.DOB}">
+                </div>                  
+                <div id="buttons">
+                <input type="button" value="Signin user" class="Signin-btn btn" />
+                <input type="button" value="Edit" class="edit-btn btn" />
+                <input type="button" value="Delete user" class="delete-btn btn" />
+                <input type="file" class="img-input btn" />
+                </div>
                                                      `
             }
         }
+
+        const panel = document.querySelector('#panel');
+        const panelExit = document.querySelector('#panel #exit-btn');
+        const editBtn = document.querySelector('#panel .edit-btn');
+        const info = document.getElementsByClassName('info');
+        const delBtn = document.querySelector('.delete-btn');
+        const imgInput = document.querySelector('.img-input');
+
+        panelExit.addEventListener('click', () => {
+            document.querySelector('#view-details-panel').style.display = 'none';
+        });
+
+        editBtn.addEventListener('click', (e) => {
+            if(e.target.value == 'Edit'){
+
+                e.target.value = 'Save';
+
+                Array.from(info).forEach(input => {
+                    input.removeAttribute('readonly', '');
+                });
+
+                delBtn.style.display = 'block';
+                imgInput.style.display = 'block';
+
+            }
+        })
+
+
     }
 });
 

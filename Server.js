@@ -4,6 +4,7 @@ import gr from './get.js';
 import { upload } from './post_routes/upload.js';
 import { register } from './post_routes/registration.js';
 import multer from 'multer';
+import nodeMailer from 'nodemailer';
 import fs from 'fs';
 import mongoose from 'mongoose';
 import {random} from './random.js';
@@ -13,6 +14,7 @@ import QRCODE from 'qrcode';
 import { qrcode } from './post_routes/qrcode.js';
 import { adminReg } from './post_routes/admin-reg-route.js';
 import { adminLogin } from './post_routes/admin-login-route.js';
+import { forgot } from './post_routes/forgot_route.js';
 
 
 
@@ -115,6 +117,31 @@ app.use(express.urlencoded({extended: false}));
 //SETTING EXPRESS TO USE STATIC FILES
 app.use(express.static('static'));
 
+//EMAIL SERVICES
+// const transporter = nodeMailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//         user: 'mytechstudio081@gmail.com',
+//         pass: 'gcpx hbqx cvtc zakp'
+//     }
+// });
+
+// const mailOptions = {
+//     from: 'TechStudio',
+//     to: 'chinedumfavourite@gmail.com',
+//     subject: 'New Password',
+//     html: '<p style="color:red; background-color:green">this is the password you will be using</p>'
+// }
+
+// transporter.sendMail(mailOptions, (err, info) => {
+//     if(err){
+//         console.log(err);
+//     } 
+//     else{
+//         console.log('Email sent: ' + info.response);
+//     }
+// })
+
 //GET REQUEST HANDLERS
 gr.get(app, userModel, adminModel);
 
@@ -126,6 +153,7 @@ userPic(app, fs, userModel);
 qrcode(app, fs, QRCODE);
 adminReg(app, adminInfo, adminModel);
 adminLogin(app, adminModel);
+forgot(app, nodeMailer, adminModel);
 
 
 

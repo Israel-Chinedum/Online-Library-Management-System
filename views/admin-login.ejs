@@ -11,11 +11,14 @@
 <body>
 
     <%- include("./load")%>
+    
 
     <img id="img" src="images\fpog_logo.png" alt="">
     <h1 id="info-text">Amin User Login</h1>
+    <p id="login-page-text">Welcome to the admin user login page, don't have an account? click <a href="/admin-reg">here</a> to register<br>
+       if you've forgotten your password the click <a href="/forgot">here</a></p>
     
-    <p id="message">This is supposed to be a message</p>
+    <p id="message"><%=error%></p>
 
     <form action="/admin-login" method="post" class="form">
     

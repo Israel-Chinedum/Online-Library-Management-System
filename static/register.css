@@ -126,3 +126,19 @@ body{
     color: darkblue;
     align-self: center;
 }
+
+#nav-bar{
+    width: 100%;
+    align-self: start;
+}
+
+#login-page-text{
+    text-align: center;
+    margin-bottom: 30px;
+    color: darkblue;
+    font-size: 1.2rem;
+}
+
+#login-page-text a{
+    color: blue;
+}
