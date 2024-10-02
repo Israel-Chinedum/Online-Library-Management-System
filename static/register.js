@@ -83,7 +83,7 @@ profileImg.addEventListener('change', async() =>{
 
         document.querySelector('#load-page').style.display = 'flex';
 
-   fetch('uploadImage', {
+   fetch('/uploadImage', {
     method: 'post',
     body: formData
    }).then(res => res.blob()).then(data => {

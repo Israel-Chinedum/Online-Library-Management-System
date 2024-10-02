@@ -42,7 +42,9 @@ import { myAdmin } from './post_routes/myAdmin.js';
 
 
 //DATABASE CONNECTION
-mongoose.connect('mongodb://localhost:27017/library');
+mongoose.connect('mongodb+srv://fastarfavour:fastar081@librarysystem.m17rk.mongodb.net/?retryWrites=true&w=majority&appName=LibrarySystem/test').then(() => {
+    console.log('Mongoose connected!');
+});
 
 //DEFINE FIELDS
 const userSchema = mongoose.Schema({
