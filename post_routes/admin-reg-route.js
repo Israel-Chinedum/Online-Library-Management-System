@@ -7,7 +7,7 @@ export const adminReg = (app, adminData, adminModel) => {
                console.log('A new user has been added!');
         })
 
-        res.render('admin-login');
+        res.render('admin-login', {error: ''});
 
      });
 }

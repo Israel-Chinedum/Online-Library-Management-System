@@ -2,7 +2,7 @@ class GetRequest{
     get(app, userModel, adminModel){
 
         app.get('', (req, res)=>{
-            res.render('home');
+            res.render('register');
         });
 
         app.get('/register', (req, res) => {
