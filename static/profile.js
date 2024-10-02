@@ -3,6 +3,7 @@ const img = document.querySelector('#img');
 const info = document.querySelectorAll('#text-info p');
 const qrImg = document.querySelector('#qr-image');
 const qrCodeBtn = document.querySelector('#qr-code-btn');
+const email = document.querySelector('#Email');
 
 window.addEventListener('load', async () => {
 
@@ -48,7 +49,7 @@ window.addEventListener('load', async () => {
     fetch('/qrcode', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({id: `${id.innerHTML}`})
+        body: JSON.stringify({id: `${id.innerHTML}`, Email: `${email.innerHTML}`})
     }).then(res => res.blob()).then(data => {
         
         qrImg.src = URL.createObjectURL(new Blob([data], {type: 'image/png'}));

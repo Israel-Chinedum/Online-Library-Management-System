@@ -30,6 +30,16 @@ body{
     padding: 20px;
 }
 
+#header h1{
+    display: flex;
+    align-items: center;
+}
+
+#header h1 img{
+    width: 50px;
+    margin-right: 10px;
+}
+
 #header h2{
     color: darkblue;
 }
@@ -110,7 +120,6 @@ body{
 #panel div{
     width: 500px;
     display: flex;
-    justify-content: space-between;
     font-size: 1.1rem;
     border-top: none;
     border-right: none;
@@ -137,6 +146,7 @@ body{
     text-align: end;
     font-size: 1.2rem;
     outline: none;
+    flex-grow: 1;
 }
 
 #panel #buttons{
@@ -252,7 +262,7 @@ body{
 #dashboard div i{
     justify-self: center;
     font-size: 1000%;
-    color: darkblue
+    color: darkblue;
 }
 
 #dashboard div{
@@ -261,6 +271,7 @@ body{
     padding: 50px;
     font-size: 1.1rem;
     color: black;
+    text-align: center;
 }
 
 #dashboard #user-list{
@@ -338,23 +349,11 @@ body{
     cursor: pointer;
 }
 
-#new-signin {
+#total-signout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 7fr;
 }
 
-#dashboard #new-signin i{
-   font-size: 2rem;
-   justify-self: end;
-}
 
-#new-signin #new-user{
-    grid-column: 1 / span 2;
-    box-shadow: none;
-    border-radius: 0;
-    border: 1px solid darkblue;
-}
 
 
 

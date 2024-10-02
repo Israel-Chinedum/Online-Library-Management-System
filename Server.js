@@ -15,6 +15,8 @@ import { qrcode } from './post_routes/qrcode.js';
 import { adminReg } from './post_routes/admin-reg-route.js';
 import { adminLogin } from './post_routes/admin-login-route.js';
 import { forgot } from './post_routes/forgot_route.js';
+import { update } from './post_routes/update.js';
+import { myAdmin } from './post_routes/myAdmin.js';
 
 
 
@@ -46,7 +48,8 @@ mongoose.connect('mongodb://localhost:27017/library');
 const userSchema = mongoose.Schema({
     Data: Object,
     File: Object,
-    IdNumber: String
+    IdNumber: String,
+    status: Boolean
 });
 
 
@@ -108,10 +111,29 @@ const data = multer.diskStorage({
 });
 const uploadData = multer({data});
 
+const updateInfo = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './uploads');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    },
+    fields: [
+        {name: 'FirstName'},
+        {name: 'LastName'},
+        {name: 'MatricNumber'},
+        {name: 'MobileNumber'},
+        {name: 'Email'},
+        {name: 'IdNumber'},
+        {name: 'DOB'},
+    ]
+});
+const updateData = multer({updateInfo});
+
 
 //SETTING THE VIEW ENGINE
 app.set('view engine', 'ejs');
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: false}));
 
 //SETTING EXPRESS TO USE STATIC FILES
@@ -150,10 +172,12 @@ register(app, fs, uploadData, userModel);
 upload(app, uploadFile, fs);
 userInfo(app, fs, userModel);
 userPic(app, fs, userModel);
-qrcode(app, fs, QRCODE);
+qrcode(app, nodeMailer, QRCODE);
 adminReg(app, adminInfo, adminModel);
 adminLogin(app, adminModel);
 forgot(app, nodeMailer, adminModel);
+update(app, updateData, userModel, adminModel);
+myAdmin(app, adminModel);
 
 
 

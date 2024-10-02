@@ -38,7 +38,8 @@ class GetRequest{
                         pic: i.File.buffer,
                         FirstName: i.Data.FirstName,
                         LastName: i.Data.LastName,
-                        MobileNumber: i.Data.MobileNumber
+                        MobileNumber: i.Data.MobileNumber,
+                        Email: i.Data.Email
                 });
                 }
                 
@@ -57,7 +58,7 @@ class GetRequest{
             }).catch(err => {
                 console.log(err);
             });
-        })
+        });
 
         app.get('/admin-reg', (req, res) => {
             res.render('admin-reg');

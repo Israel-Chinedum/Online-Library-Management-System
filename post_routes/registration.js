@@ -14,7 +14,8 @@ export const register = (app, fs, uploadData, userModel) =>{
              userModel({
                 Data: req.body,
                 File: req.file,
-                IdNumber: id
+                IdNumber: id,
+                status: false
             }).save().then( () => {
                 res.render('profile', {id});
             });
