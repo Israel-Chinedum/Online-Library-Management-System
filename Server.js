@@ -182,8 +182,11 @@ update(app, updateData, userModel, adminModel);
 myAdmin(app, adminModel);
 
 
+//PORT CONFIGURATION
+const port = process.env.PORT || 3600;
+
 
 //SETTING PORT TO LISTEN FOR INCOMING REQUESTS
-app.listen(3600, 'localhost', ()=>{
+app.listen(port, 'localhost', ()=>{
     console.log('LIBRARY SYSTEM IS NOW ONLINE');
 });
