@@ -187,6 +187,6 @@ const port = process.env.PORT || 3600;
 
 
 //SETTING PORT TO LISTEN FOR INCOMING REQUESTS
-app.listen(port, 'localhost', ()=>{
+app.listen(port, ()=>{
     console.log('LIBRARY SYSTEM IS NOW ONLINE');
 });
