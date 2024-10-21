@@ -19,6 +19,32 @@ import { update } from './post_routes/update.js';
 import { myAdmin } from './post_routes/myAdmin.js';
 
 
+// //CREATE A NEW QRCodeReader INSTANCE
+// const qr = new QRCodeReader();
+
+
+// //SETUP FOR CAMERA ACCESS
+// navigator.mediaDevices.getUserMedia({video: true})
+// .then(stream => {
+//     const video = document.getElementById('video');
+//     video.srcObject = stream;
+
+// //DECODE QR CODE FROM VIDEO STREAM
+// setInterval(() => {
+//     const canvas = document.getElementById('canvas');
+//     const ctx = canvas.getContext('2d');
+//     ctx.drawImage(video, 0, 0, 640, 480);
+//     const imageData = ctx.getImageData(0, 0, 640, 480);
+//     qr.decode(imageData.data, (err, code) => {
+//         if(err){
+//             console.error(err);
+//         } else{
+//             console.log(`Scanned QR code: ${code.data}`);
+//         }
+//     });
+// }, 100);
+
+// });
 
 
 // let num = false;
@@ -42,7 +68,7 @@ import { myAdmin } from './post_routes/myAdmin.js';
 
 
 //DATABASE CONNECTION
-mongoose.connect('mongodb+srv://fastarfavour:fastar081@librarysystem.m17rk.mongodb.net/?retryWrites=true&w=majority&appName=LibrarySystem/test').then(() => {
+mongoose.connect('mongodb://localhost:27017/library').then(() => {
     console.log('Mongoose connected!');
 });
 

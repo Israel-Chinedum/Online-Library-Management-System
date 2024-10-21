@@ -13,6 +13,7 @@ const totalUsers = document.querySelector('#total-users .number');
 const profileName = document.querySelector('#profile-name');
 const profile = document.querySelector('#profile');
 const profileImg = document.querySelector('#profile img');
+const scan = document.querySelector('#scan');
 let myArr = [];
 let adminList = [];
 
@@ -93,6 +94,46 @@ caBtn.addEventListener('click', (e) => {
     displaySections(e);
 });
 
+
+function showUsers(){
+    return{
+
+        displayUsers: (iterator) =>{
+            const buff = new Uint8Array(atob(iterator.File.buffer).split('').map(char => char.charCodeAt(0)));
+            const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
+            userList.innerHTML += `
+            <div class="user">
+                <div>
+                    <img src="${url}" alt="">
+                    <p id="user-name">${iterator.Data['FirstName']} ${iterator.Data.LastName}</p>
+                </div>
+                <p id="identification" style="display:none">${iterator.IdNumber}</p>
+                <button id="user-list-vb">View details</button>
+            </div>
+          `
+        },
+
+        displayUser: (iterator) => {
+            if(searchBox.value.toUpperCase() == iterator.IdNumber){
+                const buff = new Uint8Array(atob(iterator.File.buffer).split('').map(char => char.charCodeAt(0)));
+                const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
+                userList.innerHTML = `
+                <div class="user">
+                    <div>
+                        <img src="${url}" alt="">
+                        <p id="user-name">${iterator.Data['FirstName']} ${iterator.Data.LastName}</p>
+                    </div>
+                    <p id="identification" style="display:none">${iterator.IdNumber}</p>
+                    <button id="user-list-vb">View details</button>
+                </div>
+              `
+            }
+        }
+
+    }
+}
+const loadUsers = new showUsers();
+
 window.addEventListener('load', () => {
     fetch('/user-data').then(res => res.json())
     .then(data => {
@@ -101,18 +142,7 @@ window.addEventListener('load', () => {
         myArr = [...data];
         console.log(data);
         for(let i of data){
-            const buff = new Uint8Array(atob(i.File.buffer).split('').map(char => char.charCodeAt(0)));
-            const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
-            userList.innerHTML += `
-            <div class="user">
-                <div>
-                    <img src="${url}" alt="">
-                    <p id="user-name">${i.Data['FirstName']} ${i.Data.LastName}</p>
-                </div>
-                <p id="identification" style="display:none">${i.IdNumber}</p>
-                <button id="user-list-vb">View details</button>
-            </div>
-          `
+            loadUsers.displayUsers(i);
           if(i.status == true){
             signin++;
           } else{
@@ -171,17 +201,7 @@ searchBox.addEventListener('keyup', () => {
     if(searchBox.value == ''){
         userList.innerHTML = ''
         for(let i of myArr){
-            const buff = new Uint8Array(atob(i.File.buffer).split('').map(char => char.charCodeAt(0)));
-            const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
-            userList.innerHTML += `
-            <div class="user">
-                <div>
-                    <img src="${url}" alt="">
-                    <p id="user-name">${i.Data['FirstName']} ${i.Data.LastName}</p>
-                </div>
-                <button id="user-list-vb">View details</button>
-            </div>
-          `
+            loadUsers.displayUsers(i);
         }
     }
 
@@ -193,19 +213,7 @@ form.addEventListener('submit', (e) => {
     if(searchBox.value != ''){
         userList.innerHTML = `<h1 id="nothing" style="color: grey">THIS ID DOES NOT EXIST!</h1>`
         for(let i of myArr){
-            if(searchBox.value.toUpperCase() == i.IdNumber){
-                const buff = new Uint8Array(atob(i.File.buffer).split('').map(char => char.charCodeAt(0)));
-                const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
-                userList.innerHTML = `
-                                        <div class="user">
-                                            <div>
-                                                <img src="${url}" alt="">
-                                                <p id="user-name">${i.Data['FirstName']} ${i.Data.LastName}</p>
-                                            </div>
-                                            <button>View details</button>
-                                        </div>
-                                     `
-            }
+            loadUsers.displayUser(i);
         }
     }
     
@@ -612,5 +620,47 @@ window.addEventListener('click', (e) => {
 });
 
 
+
+
+
+// ----------QR CODE SCANNER----------
+function stopScanner(html5QrCode) {
+    if(html5QrCode) {
+        html5QrCode.stop().then(() => {
+            console.log("QR scanner stopped.");
+            document.querySelector('#reader').style.display = 'none';
+        }).catch(err => {
+            console.log(`Error stopping QR scanner: ${err}`);
+        });
+    }
+}
+
+function startScanner(){
+    const html5QrCode = new Html5Qrcode("reader");
+    html5QrCode.start(
+        {facingMode: "environment"},
+        { fps: 10, qrbox: {width: 250, height: 250}},
+        qrCodeMessage => {
+            console.log(`QRCode detected: ${qrCodeMessage}`);
+            searchBox.value = qrCodeMessage
+            for(let i of myArr){
+                    loadUsers.displayUser(i);
+            }
+            stopScanner(html5QrCode);
+        },
+        errorMessage => {
+            console.log(`QRCode scan failed: ${errorMessage}`);
+        }
+    ).catch(err => {
+        console.log(`Error starting QR scanner: ${err}`);
+    });
+}
+
+
+
+scan.addEventListener('click', () => {
+    document.querySelector('#reader').style.display = 'block';
+    startScanner();
+});
 
 

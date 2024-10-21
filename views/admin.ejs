@@ -6,10 +6,15 @@
     <title>Admin</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="Font-Awesome-6.5.2/Font-Awesome-6.5.2/css/all.css">
+
 </head>
 <body>
     <div class="container">
 
+      <div id="reader">
+
+      </div>
+        
         <div id="view-details-panel">
             <form id="panel"></form>
         </div>
@@ -17,7 +22,7 @@
         <div id="header">
             <h1> <img src="images/fpog_logo.png" alt=""> FPOG</h1>
             <h2 id="section">Dashboard</h2>
-            <button>Help</button>
+            <button id="scan">Scan</button>
         </div>
         <div id="side-panel">
             <ul>
@@ -95,6 +100,7 @@
 
         </div>
     </div>
-    <script src="admin.js"></script>
+    <script src="/qrcode"></script>
+    <script type="module" src="admin.js"></script>
 </body>
 </html>

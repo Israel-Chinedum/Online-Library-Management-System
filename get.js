@@ -80,5 +80,9 @@ class GetRequest{
             
         });
 
+        app.get('/qrcode', (req, res) => {
+            res.sendFile(`${process.cwd()}/node_modules/html5-qrcode/html5-qrcode.min.js`);
+        });
+
     }
 } export default new GetRequest();

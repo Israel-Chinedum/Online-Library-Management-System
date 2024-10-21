@@ -7,10 +7,11 @@ export const adminLogin = (app, adminModel) => {
         console.log(req.body);
 
        await adminModel.find({"Data.Email": req.body.Email, "Data.Password": req.body.Password}).then((user) =>{
+        
             if(user.length != 0){
                 for(let i of user){
                     userDetails.userName = i.Data.UserName;
-                    userDetails.pic = i.File.buffer;
+                    userDetails.pic = i["File"]["buffer"];
                 }
             
                 isValidUser = true;
@@ -30,6 +31,6 @@ export const adminLogin = (app, adminModel) => {
     });
 
     app.get('/user-details', async (req, res) => {
-        res.json(userDetails)
+        res.json(userDetails);
     })
 }
