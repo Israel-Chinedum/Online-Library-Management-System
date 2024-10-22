@@ -250,7 +250,7 @@ profile.addEventListener('click', () => {
         console.log(data)
         document.querySelector('#view-details-panel').style.display = 'flex';
 
-        for(i of data){
+        for(let i of data){
         const buff = new Uint8Array(atob(i.File.buffer).split('').map(char => char.charCodeAt(0)));
         const url = URL.createObjectURL(new Blob([buff], {type: 'image/jpeg'}));
 
@@ -643,6 +643,7 @@ function startScanner(){
         qrCodeMessage => {
             console.log(`QRCode detected: ${qrCodeMessage}`);
             searchBox.value = qrCodeMessage
+            userList.innerHTML = `<h1 id="nothing" style="color: grey">THIS ID DOES NOT EXIST!</h1>`;
             for(let i of myArr){
                     loadUsers.displayUser(i);
             }
